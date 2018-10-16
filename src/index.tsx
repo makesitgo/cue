@@ -1,36 +1,36 @@
-import React from 'react';
-import { render } from 'react-dom';
-import { AppContainer } from 'react-hot-loader';
-import { Provider } from 'react-redux';
-import { Harness, Router } from './app';
+import React from "react";
+import { render } from "react-dom";
+import { AppContainer } from "react-hot-loader";
+import { Provider } from "react-redux";
+import { Harness, Router } from "./app";
+import { Stitch } from "mongodb-stitch-browser-sdk";
 
-// TODO: use stitch client factory
+require("../static/favicon.ico");
+require("../static/main.less");
 
-require('../static/favicon.ico');
-require('../static/main.less');
+const CLIENT_APP_ID = "mongodb-cue-rirpg";
 
-// TODO: extract url and credentials to env vars
-// ApgClientFactory.create('http://localhost:8080', { username: 'admin', password: 'Ma3pb$69' }).then(
-//   client => {
-    const app = new Harness(process.env);
+if (!Stitch.hasAppClient(CLIENT_APP_ID)) {
+  Stitch.initializeDefaultAppClient(CLIENT_APP_ID);
+}
 
-    const renderApp = (Component: typeof Router) =>
-      render(
-        <Provider store={app.store}>
-          <AppContainer>
-            <Component history={app.history} />
-          </AppContainer>
-        </Provider>,
-        document.getElementById('root')
-      );
+const app = new Harness(Stitch.defaultAppClient, process.env);
 
-    renderApp(Router);
+const renderApp = (Component: typeof Router) =>
+  render(
+    <Provider store={app.store}>
+      <AppContainer>
+        <Component history={app.history} />
+      </AppContainer>
+    </Provider>,
+    document.getElementById("root")
+  );
 
-    if ((module as any).hot) {
-      (module as any).hot.accept('./app/router', () => {
-        const appRouter = require('./app/router');
-        renderApp(appRouter);
-      });
-    }
-//   }
-// );
+renderApp(Router);
+
+if ((module as any).hot) {
+  (module as any).hot.accept("./app/router", () => {
+    const appRouter = require("./app/router");
+    renderApp(appRouter);
+  });
+}

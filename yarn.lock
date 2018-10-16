@@ -410,7 +410,7 @@ balanced-match@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/balanced-match/-/balanced-match-1.0.0.tgz#89b4d199ab2bee49de164ea02b89ce462d71b767"
 
-base64-js@^1.0.2:
+base64-js@^1.0.2, base64-js@^1.3.0:
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/base64-js/-/base64-js-1.3.0.tgz#cab1e6118f051095e58b5281aea8c1cd22bfc0e3"
 
@@ -583,6 +583,13 @@ buffer@^4.3.0:
     base64-js "^1.0.2"
     ieee754 "^1.1.4"
     isarray "^1.0.0"
+
+buffer@^5.1.0:
+  version "5.2.1"
+  resolved "https://registry.yarnpkg.com/buffer/-/buffer-5.2.1.tgz#dd57fa0f109ac59c602479044dca7b8b3d0b71d6"
+  dependencies:
+    base64-js "^1.0.2"
+    ieee754 "^1.1.4"
 
 builtin-status-codes@^3.0.0:
   version "3.0.0"
@@ -1161,6 +1168,10 @@ des.js@^1.0.0:
 destroy@~1.0.4:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/destroy/-/destroy-1.0.4.tgz#978857442c44749e4206613e37946205826abd80"
+
+detect-browser@^3.0.0:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/detect-browser/-/detect-browser-3.0.1.tgz#39beead014347a8a2be1f3c4cb30a0aef2127c44"
 
 detect-libc@^1.0.2:
   version "1.0.3"
@@ -2499,6 +2510,63 @@ mkdirp@0.5.x, mkdirp@^0.5.0, mkdirp@^0.5.1, mkdirp@~0.5.0, mkdirp@~0.5.1:
   resolved "http://registry.npmjs.org/mkdirp/-/mkdirp-0.5.1.tgz#30057438eac6cf7f8c4767f38648d6697d75c903"
   dependencies:
     minimist "0.0.8"
+
+mongodb-stitch-browser-core@^4.0.15-0:
+  version "4.0.15-0"
+  resolved "https://registry.yarnpkg.com/mongodb-stitch-browser-core/-/mongodb-stitch-browser-core-4.0.15-0.tgz#e7ba4863fb36d3acfe263bce1c57a0fc2a8fd716"
+  dependencies:
+    detect-browser "^3.0.0"
+    mongodb-stitch-bson "^1.0.0"
+    mongodb-stitch-core-sdk "^4.0.15-0"
+
+mongodb-stitch-browser-sdk@^4.0.15-0:
+  version "4.0.15-0"
+  resolved "https://registry.yarnpkg.com/mongodb-stitch-browser-sdk/-/mongodb-stitch-browser-sdk-4.0.15-0.tgz#3b37b055492c16e9e54b34c51f8e4cd3d9c532e8"
+  dependencies:
+    mongodb-stitch-browser-core "^4.0.15-0"
+    mongodb-stitch-browser-services-mongodb-remote "^4.0.15-0"
+
+mongodb-stitch-browser-services-mongodb-remote@^4.0.15-0:
+  version "4.0.15-0"
+  resolved "https://registry.yarnpkg.com/mongodb-stitch-browser-services-mongodb-remote/-/mongodb-stitch-browser-services-mongodb-remote-4.0.15-0.tgz#de771498aa9bde4f1270d8166b93d8d65d92dca7"
+  dependencies:
+    mongodb-stitch-browser-core "^4.0.15-0"
+    mongodb-stitch-core-services-mongodb-remote "^4.0.15-0"
+
+mongodb-stitch-bson@1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/mongodb-stitch-bson/-/mongodb-stitch-bson-1.0.0.tgz#97d8dd10ec4962b66cc06ab30abe7a8157cab594"
+  dependencies:
+    buffer "^5.1.0"
+
+mongodb-stitch-bson@^1.0.0:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/mongodb-stitch-bson/-/mongodb-stitch-bson-1.0.1.tgz#2dad51f6e30653d7a06e4dce295ec93257718df6"
+  dependencies:
+    buffer "^5.1.0"
+
+mongodb-stitch-core-sdk@^4.0.15-0:
+  version "4.0.15-0"
+  resolved "https://registry.yarnpkg.com/mongodb-stitch-core-sdk/-/mongodb-stitch-core-sdk-4.0.15-0.tgz#8e9b6ac9655947ccdc1683e7f8d8dfe90950fcd0"
+  dependencies:
+    base64-js "^1.3.0"
+    fetch-everywhere "^1.0.5"
+    mongodb-stitch-bson "^1.0.0"
+    mongodb-stitch-extjson "^1.0.0"
+
+mongodb-stitch-core-services-mongodb-remote@^4.0.15-0:
+  version "4.0.15-0"
+  resolved "https://registry.yarnpkg.com/mongodb-stitch-core-services-mongodb-remote/-/mongodb-stitch-core-services-mongodb-remote-4.0.15-0.tgz#255d96613039079decb5091a324da3449a439742"
+  dependencies:
+    mongodb-stitch-bson "^1.0.0"
+    mongodb-stitch-core-sdk "^4.0.15-0"
+
+mongodb-stitch-extjson@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/mongodb-stitch-extjson/-/mongodb-stitch-extjson-1.0.0.tgz#8307f0bf913f0ae56140438a0b7df523af30d647"
+  dependencies:
+    buffer "^5.1.0"
+    mongodb-stitch-bson "1.0.0"
 
 move-concurrently@^1.0.1:
   version "1.0.1"

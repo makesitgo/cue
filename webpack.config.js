@@ -7,7 +7,7 @@ const libName = 'cue';
 module.exports = (env = {}) => ({
   entry: [
     'react-hot-loader/patch', // activates HMR for React
-    'webpack-dev-server/client?http://0.0.0.0:8001', // WebpackDevServer host and port
+    'webpack-dev-server/client?http://0.0.0.0:8080', // WebpackDevServer host and port
     'webpack/hot/only-dev-server', // "only" prevents reload on syntax errors
     './src/index.tsx'
   ],
@@ -87,7 +87,7 @@ module.exports = (env = {}) => ({
   })(),
   devServer: {
     host: '0.0.0.0',
-    port: 8001,
+    port: 8080,
     historyApiFallback: true, // respond to 404s with index.html
     hot: true, // enable HMR on the server
     progress: true // show compilation progress
