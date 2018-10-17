@@ -16,3 +16,7 @@ export const redirect = createAsync('redirect', (_params, _dispatch, _getState, 
   }
 }
 );
+
+export const logout = createAsync('logout', (_params, _dispatch, _getState, { client }) => 
+  client.auth.logout()
+);

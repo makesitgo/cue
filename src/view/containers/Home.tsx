@@ -1,9 +1,13 @@
 import React from 'react';
 import { PlayersView, TablesView } from '.';
+import { LogoutButton } from '../components'
 
 const Home = () => (
-  <div>
-    <h1>mongodb cue</h1>
+  <div className="home">
+    <div className = "header-bar">
+        <h1>mongodb cue</h1>
+      <LogoutButton />
+    </div>
     <TablesView />
     <PlayersView />
   </div>
