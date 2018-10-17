@@ -1,5 +1,9 @@
-import { buildReducer, newAsyncActionHandler } from '../../utils';
-import { TablesState, listTables } from './';
+import {
+  buildReducer,
+  newActionHandler,
+  newAsyncActionHandler
+} from '../../utils';
+import { TablesState, listTables, updateTable } from './';
 
 export const initialTablesState: TablesState = { loading: false, all: [] };
 
@@ -18,5 +22,8 @@ export const tablesReducer = buildReducer(initialTablesState, [
       state.loading = false;
       state.error = error.message;
     }
+  }),
+  newActionHandler(updateTable, (state, table) => {
+    state.all = [table]; // TODO: hack alert: all should be a map keyed by ids for smarter updates
   })
 ]);

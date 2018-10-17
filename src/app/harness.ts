@@ -8,7 +8,13 @@ import {
   Middleware,
   Store
 } from 'redux';
-import { AppState, initialAppState, reducers, redirect } from '../state';
+import {
+  AppState,
+  initialAppState,
+  reducers,
+  redirect,
+  watchTable
+} from '../state';
 
 const ENV_PROD = 'production';
 
@@ -39,6 +45,9 @@ export class Harness {
     );
 
     this.store.dispatch<any>(redirect.action());
+
+    // TODO: hack alert: this assumes we are watching the NYC table, ideally this gets pushed to TableView.tsx
+    this.store.dispatch<any>(watchTable.action());
   }
 
   setupLoggerMiddleware() {

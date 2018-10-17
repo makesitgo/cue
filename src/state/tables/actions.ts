@@ -22,3 +22,24 @@ export const joinTable = createAsync<string, void>(
   (tableId, _dispatch, _getState, { client }) =>
     client.callFunction('joinQueue', [tableId])
 );
+
+export const watchTable = createAsync(
+  'watch',
+  (_params, dispatch, _getState, { client }) =>
+    client
+      .getServiceClient(RemoteMongoClient.factory, 'mongodb-atlas')
+      .db('cue')
+      .collection<Table>('tables')
+      .watch(['nyc1633_38_0' as any])
+      .then((stream: any) => {
+        stream.onNext((e: any) => {
+          if (e.fullDocument.players[1] === null) {
+            return;
+          }
+
+          dispatch(updateTable(e.fullDocument));
+        });
+      })
+);
+
+export const updateTable = create<Table>('update');
