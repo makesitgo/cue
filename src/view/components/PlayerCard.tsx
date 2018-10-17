@@ -1,4 +1,5 @@
 import React from 'react';
+import { parse, distanceInWordsStrict } from 'date-fns'
 import { Player } from '../../state';
 
 interface Props {
@@ -6,7 +7,11 @@ interface Props {
 }
 
 const PlayerCard = ({ player }: Props) => (
-  <div key={player._id}>{JSON.stringify(player)}</div>
+  <tr key={player._id}>
+    <td>{player.name}</td>
+    <td>{player.currentElo}</td>
+    <td>{distanceInWordsStrict(new Date(), parse(player.registrationDate))}</td>
+  </tr>
 );
 
 export default PlayerCard;

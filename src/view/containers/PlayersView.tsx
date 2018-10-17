@@ -23,7 +23,16 @@ class PlayersView extends Component<Props> {
 
   render() {
     const { players } = this.props;
-    return <div>{players.map(player => <PlayerCard player={player} />)}</div>;
+    return (
+      <table>
+        <tr>
+          <th>Player Name</th>
+          <th>Current Elo</th> 
+          <th>Member for</th>
+        </tr>
+        {players.map(player => <PlayerCard player={player} />)}
+      </table>
+    );
   }
 }
 
