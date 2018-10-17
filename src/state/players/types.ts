@@ -3,6 +3,7 @@ export interface Player {
   name: string;
   email?: string;
   registrationDate: string;
+  currentElo: number;
 }
 
 export interface PlayersState {

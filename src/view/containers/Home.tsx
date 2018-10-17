@@ -1,10 +1,11 @@
 import React from 'react';
-import { PlayersList } from '.';
+import { PlayersView, TablesView } from '.';
 
 const Home = () => (
   <div>
     <h1>mongodb cue</h1>
-    <PlayersList />
+    <TablesView />
+    <PlayersView />
   </div>
 );
 

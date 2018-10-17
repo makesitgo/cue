@@ -1,6 +1,6 @@
 import { StitchAppClient } from 'mongodb-stitch-browser-sdk';
 import { RouterState } from 'react-router-redux';
-import { PlayersState } from './';
+import { PlayersState, initialPlayersState as players } from './';
 
 export interface AsyncContext {
   env: string;
@@ -12,3 +12,10 @@ export interface AppState {
   players: PlayersState;
   routing: RouterState;
 }
+
+export const initialAppState: AppState = {
+  players,
+  routing: {
+    location: null
+  }
+};

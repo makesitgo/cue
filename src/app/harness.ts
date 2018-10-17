@@ -1,29 +1,27 @@
 import thunk from 'redux-thunk';
 import { StitchAppClient } from 'mongodb-stitch-browser-sdk';
 import { createBrowserHistory, createMemoryHistory, History } from 'history';
-import { applyMiddleware, createStore, compose, Middleware, Store } from 'redux';
-
-import { AppState, reducers, redirect, initialPlayersState } from '../state';
+import {
+  applyMiddleware,
+  createStore,
+  compose,
+  Middleware,
+  Store
+} from 'redux';
+import { AppState, initialAppState, reducers, redirect } from '../state';
 
 const ENV_PROD = 'production';
-
-const initialState: AppState = {
-  players: initialPlayersState,
-  routing: {
-    location: null
-  }
-};
 
 export class Harness {
   public history: History;
   private middlewares: Middleware[];
   public store: Store<AppState>;
 
-  constructor(
-    public client: StitchAppClient,
-    public env: ProcessEnv,
-  ) {
-    this.history = typeof window !== 'undefined' ? createBrowserHistory() : createMemoryHistory();
+  constructor(public client: StitchAppClient, public env: ProcessEnv) {
+    this.history =
+      typeof window !== 'undefined'
+        ? createBrowserHistory()
+        : createMemoryHistory();
     this.middlewares = [thunk.withExtraArgument({ client, env })];
 
     let composeEnhancers: <R>(a: R) => R;
@@ -36,7 +34,7 @@ export class Harness {
 
     this.store = createStore(
       reducers,
-      initialState,
+      initialAppState,
       composeEnhancers(applyMiddleware(...this.middlewares))
     );
 

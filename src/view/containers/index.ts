@@ -1,4 +1,5 @@
 import Home from './Home';
-import PlayersList from './PlayersList';
+import PlayersView from './PlayersView';
+import TablesView from './TablesView';
 
-export { Home, PlayersList };
+export { Home, PlayersView, TablesView };

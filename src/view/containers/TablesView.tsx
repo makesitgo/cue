@@ -1,41 +1,39 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
-import { AppState, Player, listPlayers } from '../../state';
-import { PlayerCard } from '../';
+import { AppState } from '../../state';
 
 interface OwnProps {}
 
 interface StateProps {
-  players: Player[];
+  tables: {}[];
 }
 
 interface DispatchProps {
-  listPlayers: () => void;
+  listTables: () => void;
 }
 
 type Props = OwnProps & StateProps & DispatchProps;
 
-class PlayersList extends Component<Props> {
+class TablesView extends Component<Props> {
   componentDidMount() {
-    this.props.listPlayers();
+    this.props.listTables();
   }
 
   render() {
-    const { players } = this.props;
-    return <div>{players.map(player => <PlayerCard player={player} />)}</div>;
+    return <div>tables view!</div>;
   }
 }
 
 const mapStateToProps = (state: AppState) => ({
-  players: state.players.all
+  tables: []
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-  listPlayers: () => dispatch<any>(listPlayers.action())
+  listTables: () => {}
 });
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(PlayersList);
+)(TablesView);
