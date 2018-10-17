@@ -25,12 +25,16 @@ class PlayersView extends Component<Props> {
     const { players } = this.props;
     return (
       <table>
-        <tr>
-          <th>Player Name</th>
-          <th>Current Elo</th> 
-          <th>Member for</th>
-        </tr>
-        {players.map(player => <PlayerCard player={player} />)}
+        <thead>
+          <tr>
+            <th>Player Name</th>
+            <th>Current Elo</th> 
+            <th>Member for</th>
+          </tr>
+        </thead>
+        <tbody>
+          {players.map(player => <PlayerCard key={player._id} player={player} />)}
+        </tbody>
       </table>
     );
   }

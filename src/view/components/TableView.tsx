@@ -38,7 +38,7 @@ class TableView extends Component<Props> {
         <button onClick={() => joinTable(table._id)}>Join</button>
         <ul className="table-queue">
           {queuePlayers.length > 0
-            ? queuePlayers.map(qp => <li key={qp!._id}>{qp!.name}</li>)
+            ? queuePlayers.map(qp => qp && <li key={qp._id}>{qp.name}</li>)
             : 'the queue is empty'}
         </ul>
       </div>

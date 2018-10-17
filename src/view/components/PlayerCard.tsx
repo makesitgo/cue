@@ -7,7 +7,7 @@ interface Props {
 }
 
 const PlayerCard = ({ player }: Props) => (
-  <tr key={player._id}>
+  <tr>
     <td>{player.name}</td>
     <td>{player.currentElo}</td>
     <td>{distanceInWordsStrict(new Date(), parse(player.registrationDate))}</td>
