@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import { AppState, Player, listPlayers } from '../../state';
+import { PlayerCard } from '../';
 
 interface OwnProps {}
 
@@ -16,18 +17,13 @@ interface DispatchProps {
 type Props = OwnProps & StateProps & DispatchProps;
 
 class PlayersList extends Component<Props> {
-
   componentDidMount() {
     this.props.listPlayers();
   }
 
   render() {
     const { players } = this.props;
-    return (
-      <div>
-        {players.map(player => <div key={player._id}>{JSON.stringify(player)}</div>)}
-      </div>
-    );
+    return <div>{players.map(player => <PlayerCard player={player} />)}</div>;
   }
 }
 
