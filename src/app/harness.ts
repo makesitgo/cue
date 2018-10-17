@@ -3,12 +3,12 @@ import { StitchAppClient } from 'mongodb-stitch-browser-sdk';
 import { createBrowserHistory, createMemoryHistory, History } from 'history';
 import { applyMiddleware, createStore, compose, Middleware, Store } from 'redux';
 
-import { AppState, reducers, redirect } from '../state';
+import { AppState, reducers, redirect, initialPlayersState } from '../state';
 
 const ENV_PROD = 'production';
 
 const initialState: AppState = {
-  // players: {},
+  players: initialPlayersState,
   routing: {
     location: null
   }
