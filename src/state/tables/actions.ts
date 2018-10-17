@@ -16,3 +16,9 @@ export const listTables = createAsync(
       .find({})
       .asArray()
 );
+
+export const joinTable = createAsync<string, void>(
+  'join',
+  (tableId, _dispatch, _getState, { client }) =>
+    client.callFunction('joinQueue', [tableId])
+);

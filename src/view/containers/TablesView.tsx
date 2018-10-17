@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
-import { AppState, Player, Table, listTables } from '../../state';
+import { AppState, Player, Table, listTables, joinTable } from '../../state';
 import { TableView } from '..';
 
 interface OwnProps {
-  findPlayer: (id: string) => Player | undefined;
+  findPlayer: (id?: string) => Player | undefined;
 }
 
 interface StateProps {
@@ -18,6 +18,7 @@ interface MappedStateProps extends StateProps {
 
 interface DispatchProps {
   listTables: () => void;
+  joinTable: (id: string) => void;
 }
 
 type Props = OwnProps & StateProps & DispatchProps;
@@ -28,12 +29,11 @@ class TablesView extends Component<Props> {
   }
 
   render() {
-    const { findPlayer, tables } = this.props;
+    const { findPlayer, joinTable, tables } = this.props;
     return (
       <div>
-        <h3>tables view!</h3>
         {/* TODO: handle many tables (tabs?) */}
-        <TableView findPlayer={findPlayer} table={tables[0]} />
+        <TableView findPlayer={findPlayer} joinTable={joinTable} table={tables[0]} />
       </div>
     );
   }
@@ -45,7 +45,8 @@ const mapStateToProps = (state: AppState) => ({
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-  listTables: () => dispatch<any>(listTables.action())
+  listTables: () => dispatch<any>(listTables.action()),
+  joinTable: (id: string) => dispatch<any>(joinTable.action(id))
 });
 
 const mergeProps = (
@@ -55,8 +56,12 @@ const mergeProps = (
 ) => ({
   tables: stateProps.tables,
   ...dispatchProps,
-  findPlayer: (id: string) =>
-    stateProps.players.find(player => player._id === id)
+  findPlayer: (id?: string) =>
+    {
+      console.log(id);
+      console.log(stateProps.players);
+      return stateProps.players.find(player => player._id === id);
+    }
 });
 
 export default connect(
