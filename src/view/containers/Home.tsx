@@ -9,6 +9,7 @@ const Home = () => (
       <LogoutButton />
     </div>
     <TablesView />
+    <h1> Rankings </h1>
     <PlayersView />
   </div>
 );

@@ -2,6 +2,7 @@ import actionCreatorFactory from 'typescript-fsa';
 import { asyncFactory } from 'typescript-fsa-redux-thunk';
 import { AppState, AsyncContext, Table } from '../';
 import { RemoteMongoClient } from 'mongodb-stitch-browser-sdk';
+import { listPlayers } from '..'
 
 const create = actionCreatorFactory('tables');
 const createAsync = asyncFactory<AppState, AsyncContext>(create);
@@ -23,19 +24,6 @@ export const joinTable = createAsync<string, void>(
     client.callFunction('joinQueue', [tableId])
 );
 
-export const startGame = createAsync<string, void>(
-  'start game',
-  (tableId, _dispatch, _getState, { client }) =>
-    client.callFunction('startMatch', [tableId])
-);
-
-export const endGame = createAsync<
-  { tableId: string; winnerIdx: number },
-  void
->('end game', ({ tableId, winnerIdx }, _dispatch, _getState, { client }) =>
-  client.callFunction('endMatch', [tableId, winnerIdx])
-);
-
 export const watchTable = createAsync(
   'watch',
   (_params, dispatch, _getState, { client }) =>
@@ -51,6 +39,7 @@ export const watchTable = createAsync(
             return;
           }
           dispatch(updateTable(e.fullDocument));
+          dispatch(listPlayers.action());
         });
       })
 );

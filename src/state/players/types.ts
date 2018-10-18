@@ -4,6 +4,12 @@ export interface Player {
   email?: string;
   registrationDate: string;
   currentElo: number;
+  stats: PlayerStats;
+}
+
+export interface PlayerStats {
+  wins: number;
+  losses: number;
 }
 
 export interface PlayersState {

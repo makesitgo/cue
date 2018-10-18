@@ -10,6 +10,8 @@ const PlayerCard = ({ player }: Props) => (
   <tr>
     <td>{player.name}</td>
     <td>{player.currentElo}</td>
+    <td>{((player.stats) || {wins: 0}).wins}</td>
+    <td>{((player.stats) || {losses: 0}).losses}</td>
     <td>{distanceInWordsStrict(new Date(), parse(player.registrationDate))}</td>
   </tr>
 );

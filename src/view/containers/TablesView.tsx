@@ -7,8 +7,6 @@ import {
   Table,
   listTables,
   joinTable,
-  startGame,
-  endGame
 } from '../../state';
 import { TableView } from '..';
 
@@ -27,8 +25,6 @@ interface MappedStateProps extends StateProps {
 interface DispatchProps {
   listTables: () => void;
   joinTable: (id: string) => void;
-  startGame: (id: string) => void;
-  endGame: (id: string, idx: number) => void;
 }
 
 type Props = OwnProps & StateProps & DispatchProps;
@@ -39,15 +35,13 @@ class TablesView extends Component<Props> {
   }
 
   render() {
-    const { findPlayer, joinTable, startGame, endGame, tables } = this.props;
+    const { findPlayer, joinTable, tables } = this.props;
     return (
       <div>
         {/* TODO: handle many tables (tabs?) */}
         <TableView
           findPlayer={findPlayer}
           joinTable={joinTable}
-          startGame={startGame}
-          endGame={endGame}
           table={tables[0]}
         />
       </div>
@@ -63,9 +57,6 @@ const mapStateToProps = (state: AppState) => ({
 const mapDispatchToProps = (dispatch: Dispatch) => ({
   listTables: () => dispatch<any>(listTables.action()),
   joinTable: (id: string) => dispatch<any>(joinTable.action(id)),
-  startGame: (id: string) => dispatch<any>(startGame.action(id)),
-  endGame: (tableId: string, winnerIdx: number) =>
-    dispatch<any>(endGame.action({ tableId, winnerIdx }))
 });
 
 const mergeProps = (

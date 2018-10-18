@@ -29,6 +29,8 @@ class PlayersView extends Component<Props> {
           <tr>
             <th>Player Name</th>
             <th>Current Elo</th> 
+            <th>Wins</th>
+            <th>Losses</th>
             <th>Member for</th>
           </tr>
         </thead>

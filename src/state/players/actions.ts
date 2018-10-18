@@ -15,6 +15,6 @@ export const listPlayers = createAsync(
       .getServiceClient(RemoteMongoClient.factory, 'mongodb-atlas')
       .db('cue')
       .collection<Player>('players')
-      .find({})
+      .find({}, {sort: {currentElo: -1}})
       .asArray()
 );
